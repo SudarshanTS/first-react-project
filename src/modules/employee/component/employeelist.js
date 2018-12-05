@@ -8,6 +8,7 @@ class  Employeelist extends Component{
     <table >
     <thead>
     <tr>
+             <th>Profile</th>
              <th>Name</th>
              <th>Id</th>
              <th>Email</th>
@@ -23,6 +24,7 @@ class  Employeelist extends Component{
          {this.props.rows.map(tablerows => {
              return (
                 <tr key={Math.random()} >
+                <td><img src={tablerows.img} alt="test" /></td>
                 <td>{tablerows.name}</td>
                 <td>{tablerows.id}</td> 
                 <td>{tablerows.email}</td>

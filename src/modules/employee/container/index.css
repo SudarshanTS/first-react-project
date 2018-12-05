@@ -1,16 +1,43 @@
+*{
+    box-sizing: border-box
+}
+.mainWapper{
+    display: grid;
+    
+}
 .Wapper{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.wapper2{
+  display: grid;
+  grid-template-columns: auto auto auto; 
+  align-items: center;
+}
+.wapper3{
     display: grid;
     grid-template-columns: auto auto;
 }
 .employeeForms{
     display: grid;
-    width: 404px;
-    background-color: #4883FF;
+    background-color:#636363;
+    margin: 60px auto;
+    border: 1px solid black;
+    width: 50%;
 }
-.Button{
-    width: 95%;
+.empolyeeName{
     display: flex;
     justify-content: space-evenly;
+}
+.gender-Phone{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.Button{
+    width: 98%;
+    display: flex;
+    justify-content: flex-end;
 }
 .buttonStyle{
     width: 87px;
@@ -74,11 +101,28 @@ td:hover{
       color: white;
   }
   .imageUpload{
-      padding-left: 13px;
+    padding-left: 23px;
+    padding-top: 13px;
   }
   .inputFile{
-    width: 46%;
+    width: 42%;
+    opacity: 0;
+   z-index: 1;
   }
   .required{
       color: red;
+  }
+  img{
+    height: 69px;
+    width: 43%;
+    border-radius: 5px;
+  }
+  .imageContainer{
+    justify-content: center;
+    display: grid;
+    height: 100%;
+  }
+  .uploadImage{
+      width: 5%;
+      position: absolute;
   }

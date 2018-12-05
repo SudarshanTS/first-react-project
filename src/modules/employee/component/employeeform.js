@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../container/index.css';
 import Employeelist from './employeelist';
+import Upload from '../../../assets/images/Uploadimage'
 class Employeeform extends Component{
     constructor(props){
         super(props);
@@ -25,7 +26,8 @@ class Employeeform extends Component{
         errors: {},
         formIsValid:true,
         ischecked:false,
-        selectedFile: null,
+        file: '',
+        imagePreviewUrl: ''
      }
     setVarible(event,key){
         const currentValue = this.state.currentValue;
@@ -69,7 +71,7 @@ save=()=>{
        this.clear()    
     }
     else{
-        rows.push({...this.state.currentValue,id:rows.length});
+        rows.push({...this.state.currentValue,id:rows.length,img:this.state.imagePreviewUrl});
         this.clear()
     }
     this.setState({
@@ -79,6 +81,7 @@ save=()=>{
   }); 
   console.log(rows)
   
+
 }
 validateForm(currentValue) {
     let errors = {};
@@ -147,8 +150,19 @@ validateForm(currentValue) {
      })
     }
     fileChangedHandler = (event) => {
-        this.setState({selectedFile: event.target.files[0]})
-      }
+        let reader = new FileReader();
+        let file = event.target.files[0];
+       
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result,
+      });
+      console.log(this.state)
+    }
+    
+    reader.readAsDataURL(file)
+     }
      
     handleDeleteRow() {
         let rows = [...this.state.rows]
@@ -176,13 +190,40 @@ validateForm(currentValue) {
      })
  } 
 render(){ 
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img src={imagePreviewUrl} alt="test" />);
+    } 
          return (
-         <div className="Wapper">
+         <div className="mainWapper">
           <form className="employeeForms">
-             <label>Name<span className="required">*</span></label><input className="inputField" value={this.state.currentValue.name} onChange={(e)=>this.setVarible(e,"name")}type="text" ></input>
+          <div className="Wapper">
+          <div className="imageUpload">
+             <div className="imageContainer">
+              <div style={{display: "flex",alignItems:"center",justifyContent:"space-evenly"}}>
+              {$imagePreview}
+               <div>{this.state.file.name}</div>
+              </div>
+              <div style={{display: "flex",justifyContent: "center"}}>
+              <input type="file" ref={this.fileInput} onChange={this.fileChangedHandler} className="inputFile" />
+               <div style={{position:"absolute"}}><Upload/></div>
+              </div>
+             </div>
+            
+             </div>
+            <div>
+            <div className="empolyeeName ">
+            <div >
+             <label>FirstName<span className="required">*</span></label><input className="inputField" value={this.state.currentValue.fname} onChange={(e)=>this.setVarible(e,"fname")}type="text" ></input>
              <div className="errorMsg">{this.state.errors.name}</div>
-             <label>Email <span className="required">*</span></label><input  className="inputField" value={this.state.currentValue.email} onChange={(e)=>this.setVarible(e,"email")}  type="email"></input>
-             <div className="errorMsg">{this.state.errors.email}</div>
+             </div>
+             <div>
+             <label>LastName<span className="required">*</span></label><input className="inputField" value={this.state.currentValue.lname} onChange={(e)=>this.setVarible(e,"lname")}type="text" ></input>
+             <div className="errorMsg">{this.state.errors.name}</div>
+             </div>
+             </div>  
+             <div className="gender-Phone">
              <div className="radioButton">
              <label>Gender <span className="required">*</span></label>
                 <label>
@@ -195,19 +236,44 @@ render(){
                  onChange={(e)=>this.setVarible(e,"gender")}/>
                  Female
                 </label>
+                <div className="errorMsg">{this.state.errors.gender}</div>  
             </div>
-            <div className="errorMsg">{this.state.errors.gender}</div>   
-             <label>Phone <span className="required">*</span></label><input className="inputField"  value={this.state.currentValue.phone} onChange={(e)=>this.setVarible(e,"phone")}type="number"></input>
+           
+            <div>
+            <label>Phone <span className="required">*</span></label><input className="inputField"  value={this.state.currentValue.phone} onChange={(e)=>this.setVarible(e,"phone")}type="number"></input>
              <div className="errorMsg">{this.state.errors.phone}</div>
-             <label>DOB <span className="required">*</span></label><input  className="inputField"  value={this.state.currentValue.dob} onChange={(e)=>this.setVarible(e,"dob")}  type="Date"></input>
+            </div>
+            </div>
+            </div>
+            </div> 
+            <div className="wapper2">
+             <div>
+                 <label>DOB <span className="required">*</span></label>
+                 <input  className="inputField"  value={this.state.currentValue.dob} onChange={(e)=>this.setVarible(e,"dob")}  type="Date"></input>
+             </div>
+             <div>
+             <label>Email <span className="required">*</span></label><input  className="inputField" value={this.state.currentValue.email} onChange={(e)=>this.setVarible(e,"email")}  type="email"></input>
+             <div className="errorMsg">{this.state.errors.email}</div>
+             </div>
+             <div>
+             <label>Role <span className="required">*</span></label>    
+             <select>
+                <option value="Trainer">Trainer</option>
+                <option value="Designer">Designer</option>
+                <option value="Devloper">Devloper</option>
+                <option value="Hr">Hr</option>
+            </select>
+             </div>
+             </div>
+             <div className="wapper3">
+             <div>
              <label>Communication Address <span className="required">*</span></label><textarea   value={this.state.currentValue.communicationaddress} onChange={(e)=>this.setVarible(e,"communicationaddress")} type="text"></textarea>
              <div className="checkBox"><input type="checkbox" checked={this.state.ischecked} onChange={(e)=>this.handleChecked(e)}/><span>Is Communication address is same as Permanent address</span></div>
-             <label>Permanent Address <span className="required">*</span></label><textarea  value={this.state.currentValue.permanentaddress} onChange={(e)=>this.setVarible(e,"permanentaddress")} type="text"></textarea>
-             <div className="errorMsg">{this.state.errors.address}</div>
-             <div className="imageUpload">
-             <input type="file" ref={this.fileInput} onChange={this.fileChangedHandler} className="inputFile" />
-             {/* <button onClick={this.uploadHandler}>Upload!</button> */}
              </div>
+             <div>
+             <label>Permanent Address <span className="required">*</span></label><textarea  value={this.state.currentValue.permanentaddress} onChange={(e)=>this.setVarible(e,"permanentaddress")} type="text"></textarea>
+              </div>
+              </div>
              <div className='Button'>
             <button id="button" className="buttonStyle" onClick={(e)=>this.create(e)}>{this.state.text}</button>
           </div>
