@@ -1,41 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 *{
-    box-sizing: border-box
+    box-sizing:  border-box;
+    font-family: 'Roboto'
 }
 .mainWapper{
     display: grid;
     
 }
+.formWapper{
+    display:grid;
+    
+}
 .Wapper{
+    grid-template-columns: 33% 33% 33%;
+    /* width: 400px; */
     display: grid;
-    grid-template-columns: auto auto;
+    align-items: center
 }
 .wapper2{
-  display: grid;
-  grid-template-columns: auto auto auto; 
-  align-items: center;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    margin-bottom: 49px;
+  
+
 }
 .wapper3{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 33% 33% 33%;
+   
 }
 .employeeForms{
-    display: grid;
-    background-color:#636363;
-    margin: 60px auto;
-    border: 1px solid black;
-    width: 50%;
+    width: 100%;
+    height: 142%;
 }
-.empolyeeName{
+.viewImage{
     display: flex;
     justify-content: space-evenly;
-}
-.gender-Phone{
-    display: flex;
     align-items: center;
-    justify-content: space-around;
+    align-content: center;
+    width: 66%;
+}
+.radioButton{
+    width:100%;
+    display: grid
+}
+.radioButton span{
+  margin-left: 13px;
 }
 .Button{
-    width: 98%;
+    width: 97%;
     display: flex;
     justify-content: flex-end;
 }
@@ -50,59 +63,62 @@
     font-size: 20px;
 }
 .inputField{
-    height: 28px;
-    width: 87%;
+    height: 36px;
+    width: 91%;
+    background-color: lightgray;
     padding: 3px 14px;
     margin: 3px 12px;
-    border-radius: 2px 2px 2px 2px;
     border: none;
+    border-radius: 7px;
 }
 label{
-    color: #fff8f8;
+
     font-size: medium;
     margin-left: 13px;
+     display: flex;
+    align-items: flex-end;
 }
 table, th, td {
     border: solid 1px #DDD;
     border-collapse: collapse;
     padding: 2px 3px;
     text-align: center;
+    width: 1%;
 }
 table {
     width: 100%;
     font: 17px Roboto;
 }
-td:hover{
-     background-color: #4883FF;
+tr:hover td{
+    background-color: #4883FF;
 }
-.tableButton{
-    display:flex;
-    justify-content:space-around;
+td:hover .tableButton {
+   
+    visibility: visible;
 }
+
+
 .errorMsg {
     color: #cc0000;
     margin-left: 12px;
-  }
-  .radioButton{
-      display: flex;
-     
+    height: 15px;
   }
   textarea{
-    height: 76px;
-    width: 92%;
+    height: 88px;
+    width: 91%;
+    padding: 3px 14px;
     margin: 3px 12px;
+    border: none;
+    border-radius: 5px;
+    background: lightgray;
   }
   .checkBox{
     display: flex;
-    padding-left: 12px;
+    padding-left: 11px;
     align-items: center;
   }
   span{
-      color: white;
-  }
-  .imageUpload{
-    padding-left: 23px;
-    padding-top: 13px;
+      color: black;
   }
   .inputFile{
     width: 42%;
@@ -112,17 +128,45 @@ td:hover{
   .required{
       color: red;
   }
-  img{
-    height: 69px;
-    width: 43%;
-    border-radius: 5px;
+  .imagePreview{
+   
+    width: 71%;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    height: 192px;
   }
+
   .imageContainer{
-    justify-content: center;
-    display: grid;
-    height: 100%;
+    display: flex;
+    height: 50%;
   }
   .uploadImage{
       width: 5%;
       position: absolute;
+  }
+  .uploadButton{
+    position: relative;
+    left: -86px;
+    z-index: -1;
+    height: 34px;
+    background: white;
+    border: 2px solid #15c3cc;
+    color: lightskyblue;
+    font-size: 21px;
+    border-radius: 5px;
+  }
+  
+  select{
+    width: 91%;
+    height: 32px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    margin-left: 12px;
+  }
+  .tableProfile{
+    width: 87%;
+  }
+  .tableButton{
+      visibility: hidden
   }
